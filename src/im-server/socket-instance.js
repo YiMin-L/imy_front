@@ -35,7 +35,7 @@ class SocketInstance {
             window.location.reload()
         }
 
-        return `${config.BASE_WS_URL}/` + getToken()
+        return `${config.BASE_WS_URL}?token=` + getToken()
       },
       {
         onError: evt => {
@@ -68,7 +68,9 @@ class SocketInstance {
    * 注册回调消息处理事件
    */
   registerEvents() {
-    this.socket.on('heartbeat', data => {})
+    this.socket.on('heartbeat', data => {
+      console.log('心跳包...')
+    })
 
     this.socket.on('event_talk', data => {
       new TalkEvent(data).handle()

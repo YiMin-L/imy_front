@@ -11,7 +11,7 @@
 ### 项目安装(部署)
 ###### 设置 npm 镜像源
 ```language
-npm config set registry https://registry.npm.taobao.org
+npm config set registry https://registry.npmmirror.com
 ```
 
 ###### 下载安装
@@ -21,6 +21,9 @@ npm install
 
 # 启动本地开发环境
 npm run serve
+
+# On Unix-like (Linux, macOS, Git bash, etc.):
+export NODE_OPTIONS=--openssl-legacy-provider
 
 ## 生产环境构建项目
 npm run build
@@ -32,9 +35,7 @@ npm run build --report
 ###### 修改 .env 配置信息
 
 ```env
-VUE_APP_API_BASE_URL=http://xxx.yourdomain.com
-VUE_APP_WEB_SOCKET_URL=ws://xxx.yourdomain.com/socket.io
-VUE_APP_WEBSITE_NAME="Lumen IM"
+
 ```
 
 ###### 关于 Nginx 的一些配置

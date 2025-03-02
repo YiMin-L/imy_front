@@ -105,16 +105,17 @@ export default {
 
     login() {
       ServeLogin({
-        mobile: this.form.username,
-        password: md5("yym" + this.form.password),
-        platform: 'web',
+        username: this.form.username,
+        // password: md5("yym" + this.form.password),
+        password: this.form.password,
+        clientType: 1,
       })
         .then(res => {
           if (res.code == 200) {
             let result = res.data
 
             // 保存授权信息到本地缓存
-            setToken(result.access_token, result.expires_in)
+            setToken(result.accessToken, result.expiresIn)
 
             this.$store.commit('UPDATE_USER_INFO', result.userInfo)
             this.$store.commit('UPDATE_LOGIN_STATUS')
@@ -144,16 +145,6 @@ export default {
       })
     },
 
-    showNotice() {
-      setTimeout(() => {
-        this.$notify({
-          title: '友情提示',
-          message:
-            '此站点仅供演示、学习所用，请勿进行非法操作、上传或发布违法资讯。',
-          duration: 0,
-        })
-      }, 3000)
-    },
   },
 }
 </script>
