@@ -25,6 +25,14 @@ npm run serve
 # On Unix-like (Linux, macOS, Git bash, etc.):
 export NODE_OPTIONS=--openssl-legacy-provider
 
+# win
+set NODE_OPTIONS=--openssl-legacy-providerOn 
+
+PowerShell:
+$env:NODE_OPTIONS = "--openssl-legacy-provider"
+
+
+
 ## 生产环境构建项目
 npm run build
 
