@@ -33,15 +33,15 @@ const routes = [
       needLogin: true,
     },
   },
-  {
-    path: '/note',
-    name: 'note',
-    component: () => import('@/views/note/index'),
-    meta: {
-      title: '我的笔记',
-      needLogin: true,
-    },
-  },
+  // {
+  //   path: '/note',
+  //   name: 'note',
+  //   component: () => import('@/views/note/index'),
+  //   meta: {
+  //     title: '我的笔记',
+  //     needLogin: true,
+  //   },
+  // },
   {
     path: '/example',
     name: 'example',

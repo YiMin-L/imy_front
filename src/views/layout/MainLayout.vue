@@ -39,17 +39,17 @@
               </router-link>
             </el-tooltip>
 
-            <el-tooltip
-              content="我的笔记"
-              placement="right"
-              :visible-arrow="false"
-            >
-              <router-link to="/note">
-                <div class="menu-items" :class="{ active: idx == 2 }">
-                  <i class="el-icon-notebook-1" />
-                </div>
-              </router-link>
-            </el-tooltip>
+<!--            <el-tooltip-->
+<!--              content="我的笔记"-->
+<!--              placement="right"-->
+<!--              :visible-arrow="false"-->
+<!--            >-->
+<!--              <router-link to="/note">-->
+<!--                <div class="menu-items" :class="{ active: idx == 2 }">-->
+<!--                  <i class="el-icon-notebook-1" />-->
+<!--                </div>-->
+<!--              </router-link>-->
+<!--            </el-tooltip>-->
 
             <el-tooltip
               content="我的设置"
