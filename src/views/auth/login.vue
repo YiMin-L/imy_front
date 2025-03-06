@@ -105,7 +105,7 @@ export default {
 
     login() {
       ServeLogin({
-        username: this.form.username,
+        mobile: this.form.username,
         // password: md5("yym" + this.form.password),
         password: this.form.password,
         clientType: 1,

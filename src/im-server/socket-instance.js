@@ -69,7 +69,7 @@ class SocketInstance {
    */
   registerEvents() {
     this.socket.on('heartbeat', data => {
-      console.log('心跳包...')
+      console.log('心跳包...'+data)
     })
 
     this.socket.on('event_talk', data => {

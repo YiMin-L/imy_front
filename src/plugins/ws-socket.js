@@ -132,7 +132,7 @@ class WsSocket {
     this.lastTime = new Date().getTime()
 
     this.events.onOpen(evt)
-
+    console.log("连接成功..."+this.lastTime)
     this.ping()
   }
 
@@ -172,7 +172,7 @@ class WsSocket {
     this.lastTime = new Date().getTime()
 
     let result = this.onParse(evt)
-
+    console.log("onMessage "+result.event)
     // 判断消息事件是否被绑定
     if (this.onCallBacks.hasOwnProperty(result.event)) {
       this.onCallBacks[result.event](result.data, result.orginData)
