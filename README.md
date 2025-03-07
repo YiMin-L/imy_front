@@ -18,19 +18,12 @@ npm config set registry https://registry.npmmirror.com
 ```bash
 ## 安装项目依赖扩展组件
 npm install
+## 使用 cross-env 跨平台设置环境变量
+npm install --save-dev cross-env 
+
 
 # 启动本地开发环境
 npm run serve
-
-# On Unix-like (Linux, macOS, Git bash, etc.):
-export NODE_OPTIONS=--openssl-legacy-provider
-
-# win
-set NODE_OPTIONS=--openssl-legacy-providerOn 
-
-PowerShell:
-$env:NODE_OPTIONS = "--openssl-legacy-provider"
-
 
 
 ## 生产环境构建项目
