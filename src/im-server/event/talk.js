@@ -220,7 +220,7 @@ class Talk extends Base {
     store.commit('UPDATE_TALK_ITEM', {
       index_name: this.getIndexName(),
       msg_text: this.getTalkText(),
-      updated_at: parseTime(new Date()),
+      update_at: parseTime(new Date()),
     })
 
     if (this.talk_type == 1 && this.getAccountId() !== this.sender_id) {
@@ -240,7 +240,7 @@ class Talk extends Base {
     store.commit('UPDATE_TALK_MESSAGE', {
       index_name: this.getIndexName(),
       msg_text: this.getTalkText(),
-      updated_at: parseTime(new Date()),
+      update_at: parseTime(new Date()),
     })
   }
 }

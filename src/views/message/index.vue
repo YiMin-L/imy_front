@@ -9,21 +9,21 @@
             <el-header height="60px" class="header">
               <div class="from-search">
                 <el-input
-                  v-model="input"
-                  prefix-icon="el-icon-search"
-                  placeholder="搜索聊天 / 好友 / 群组"
-                  size="small"
+                    v-model="input"
+                    prefix-icon="el-icon-search"
+                    placeholder="搜索聊天 / 好友 / 群组"
+                    size="small"
                 />
               </div>
 
               <!-- 工具栏 -->
               <div class="tools" v-outside="closeSubMenu">
                 <el-button
-                  circle
-                  plain
-                  size="small"
-                  icon="el-icon-plus"
-                  @click="subMenu = !subMenu"
+                    circle
+                    plain
+                    size="small"
+                    icon="el-icon-plus"
+                    @click="subMenu = !subMenu"
                 />
 
                 <transition name="el-zoom-in-top">
@@ -41,41 +41,41 @@
 
             <!-- 置顶栏 -->
             <header
-              v-show="loadStatus == 3 && topItems.length > 0"
-              class="subheader"
+                v-show="loadStatus == 3 && topItems.length > 0"
+                class="subheader"
             >
               <div
-                v-for="item in topItems"
-                :key="item.index_name"
-                class="top-item"
-                @click="clickTab(item.index_name)"
-                @contextmenu.prevent="topItemsMenu(item, $event)"
+                  v-for="item in topItems"
+                  :key="item.index_name"
+                  class="top-item"
+                  @click="clickTab(item.index_name)"
+                  @contextmenu.prevent="topItemsMenu(item, $event)"
               >
                 <el-tooltip
-                  effect="dark"
-                  placement="top-start"
-                  :content="item.remark_name ? item.remark_name : item.name"
+                    effect="dark"
+                    placement="top-start"
+                    :content="item.remark_name ? item.remark_name : item.name"
                 >
                   <div class="avatar">
                     <span v-show="!item.avatar">
                       {{
                         (item.remark_name
-                          ? item.remark_name
-                          : item.name
+                                ? item.remark_name
+                                : item.name
                         ).substr(0, 1)
                       }}
                     </span>
                     <img
-                      v-show="item.avatar"
-                      :src="item.avatar"
-                      :onerror="$store.state.defaultAvatar"
+                        v-show="item.avatar"
+                        :src="item.avatar"
+                        :onerror="$store.state.defaultAvatar"
                     />
                   </div>
                 </el-tooltip>
 
                 <div
-                  class="name"
-                  :class="{ active: index_name == item.index_name }"
+                    class="name"
+                    :class="{ active: index_name == item.index_name }"
                 >
                   {{ item.remark_name ? item.remark_name : item.name }}
                 </div>
@@ -84,14 +84,14 @@
 
             <!-- 对话列表栏 -->
             <el-scrollbar
-              tag="section"
-              ref="menusScrollbar"
-              class="full-height"
-              :native="false"
+                tag="section"
+                ref="menusScrollbar"
+                class="full-height"
+                :native="false"
             >
               <el-main class="main">
                 <p v-show="loadStatus == 2" class="empty-data">
-                  <i class="el-icon-loading" /> 数据加载中...
+                  <i class="el-icon-loading"/> 数据加载中...
                 </p>
 
                 <p v-show="loadStatus == 3 && talkNum == 0" class="empty-data">
@@ -107,33 +107,33 @@
                 <!-- 对话列表 -->
                 <template v-if="loadStatus == 3">
                   <div
-                    v-for="item in talkItems"
-                    :key="item.index_name"
-                    class="talk-item pointer"
-                    :class="{ active: index_name == item.index_name }"
-                    @click="clickTab(item.index_name)"
-                    @contextmenu.prevent="talkItemsMenu(item, $event)"
+                      v-for="item in talkItems"
+                      :key="item.index_name"
+                      class="talk-item pointer"
+                      :class="{ active: index_name == item.index_name }"
+                      @click="clickTab(item.index_name)"
+                      @contextmenu.prevent="talkItemsMenu(item, $event)"
                   >
                     <div class="avatar-box">
                       <span v-show="!item.avatar">
                         {{
                           (item.remark_name
-                            ? item.remark_name
-                            : item.name
+                                  ? item.remark_name
+                                  : item.name
                           ).substr(0, 1)
                         }}
                       </span>
                       <img
-                        v-show="item.avatar"
-                        :src="item.avatar"
-                        :onerror="$store.state.defaultAvatar"
+                          v-show="item.avatar"
+                          :src="item.avatar"
+                          :onerror="$store.state.defaultAvatar"
                       />
                       <div
-                        v-show="item.is_top == 0"
-                        class="top-mask"
-                        @click.stop="topChatItem(item)"
+                          v-show="item.is_top == 0"
+                          class="top-mask"
+                          @click.stop="topChatItem(item)"
                       >
-                        <i class="el-icon-top" />
+                        <i class="el-icon-top"/>
                       </div>
                     </div>
                     <div class="card-box">
@@ -156,25 +156,25 @@
                           </div>
 
                           <div
-                            v-show="item.talk_type == 2"
-                            class="larkc-tag group"
+                              v-show="item.talk_type == 2"
+                              class="larkc-tag group"
                           >
                             群组
                           </div>
                           <div
-                            v-show="item.is_disturb"
-                            class="larkc-tag disturb"
+                              v-show="item.is_disturb"
+                              class="larkc-tag disturb"
                           >
-                            <i class="iconfont icon-xiaoximiandarao" />
+                            <i class="iconfont icon-xiaoximiandarao"/>
                           </div>
                         </div>
                         <div class="card-time">
-                          <u-time :value="item.updated_at" />
+                          <u-time :value="item.update_at" />
                         </div>
                       </div>
                       <div class="content">
                         <template
-                          v-if="
+                            v-if="
                             index_name != item.index_name && item.draft_text
                           "
                         >
@@ -184,8 +184,8 @@
                         <template v-else>
                           <template v-if="item.is_robot == 0">
                             <span
-                              v-if="item.talk_type == 1"
-                              :class="{ 'online-color': item.is_online == 1 }"
+                                v-if="item.talk_type == 1"
+                                :class="{ 'online-color': item.is_online == 1 }"
                             >
                               [{{ item.is_online == 1 ? '在线' : '离线' }}]
                             </span>
@@ -205,14 +205,14 @@
 
         <!-- 聊天面板容器 -->
         <el-main class="ov-hidden full-height no-padding">
-          <WelcomeModule v-if="index_name == null" />
+          <WelcomeModule v-if="index_name == null"/>
           <TalkPanel
-            v-else
-            class="full-height"
-            :params="params"
-            :is-online="isFriendOnline"
-            @change-talk="changeTalk"
-            @close-talk="closeTalk"
+              v-else
+              class="full-height"
+              :params="params"
+              :is-online="isFriendOnline"
+              @change-talk="changeTalk"
+              @close-talk="closeTalk"
           />
         </el-main>
 
@@ -222,17 +222,17 @@
 
     <!-- 创建群聊组件 -->
     <GroupLaunch
-      v-if="launchGroupShow"
-      @close="launchGroupShow = false"
-      @create-success="groupChatSuccess"
+        v-if="launchGroupShow"
+        @close="launchGroupShow = false"
+        @create-success="groupChatSuccess"
     />
 
     <!-- 用户查询组件 -->
-    <UserSearch ref="searchUsers" />
+    <UserSearch ref="searchUsers"/>
   </div>
 </template>
 <script>
-import { mapGetters, mapState } from 'vuex'
+import {mapGetters, mapState} from 'vuex'
 import MainLayout from '@/views/layout/MainLayout'
 import WelcomeModule from '@/components/layout/WelcomeModule'
 import GroupLaunch from '@/components/group/GroupLaunch'
@@ -245,10 +245,10 @@ import {
   ServeTopTalkList,
   ServeSetNotDisturb,
 } from '@/api/chat'
-import { ServeDeleteContact, ServeEditContactRemark } from '@/api/contacts'
-import { ServeSecedeGroup } from '@/api/group'
-import { beautifyTime } from '@/utils/functions'
-import { findTalkIndex, getCacheIndexName } from '@/utils/talk'
+import {ServeDeleteContact, ServeEditContactRemark} from '@/api/contacts'
+import {ServeSecedeGroup} from '@/api/group'
+import {beautifyTime} from '@/utils/functions'
+import {findTalkIndex, getCacheIndexName} from '@/utils/talk'
 
 const title = document.title
 
@@ -316,7 +316,7 @@ export default {
       if (value > 0) {
         this.interval = setInterval(() => {
           document.title =
-            document.title == title ? `【新消息】${title}` : title
+              document.title == title ? `【新消息】${title}` : title
         }, 2000)
       } else {
         document.title = title
@@ -480,9 +480,9 @@ export default {
           {
             label: item.is_disturb == 0 ? '消息免打扰' : '开启消息提示',
             icon:
-              item.is_disturb == 0
-                ? 'el-icon-close-notification'
-                : 'el-icon-bell',
+                item.is_disturb == 0
+                    ? 'el-icon-close-notification'
+                    : 'el-icon-bell',
             disabled: item.is_robot == 1,
             onClick: () => {
               this.setNotDisturb(item)
@@ -503,15 +503,15 @@ export default {
             onClick: () => {
               let title = item.talk_type == 1 ? '删除好友' : '退出群聊'
               this.$confirm(
-                `此操作将 <span style="color:red;font-size:16px;">${title}</span>, 是否继续?`,
-                '提示',
-                {
-                  confirmButtonText: '确定',
-                  cancelButtonText: '取消',
-                  type: 'warning',
-                  center: true,
-                  dangerouslyUseHTMLString: true,
-                }
+                  `此操作将 <span style="color:red;font-size:16px;">${title}</span>, 是否继续?`,
+                  '提示',
+                  {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning',
+                    center: true,
+                    dangerouslyUseHTMLString: true,
+                  }
               ).then(() => {
                 if (item.talk_type == 1) {
                   this.removeFriend(item)
@@ -554,7 +554,7 @@ export default {
       ServeTopTalkList({
         list_id: item.id,
         type: item.is_top == 0 ? 1 : 2,
-      }).then(({ code }) => {
+      }).then(({code}) => {
         if (code == 200) {
           this.$store.commit('UPDATE_TALK_ITEM', {
             index_name: item.index_name,
@@ -570,7 +570,7 @@ export default {
         talk_type: item.talk_type,
         receiver_id: item.receiver_id,
         is_disturb: item.is_disturb == 0 ? 1 : 0,
-      }).then(({ code }) => {
+      }).then(({code}) => {
         if (code == 200) {
           this.$store.commit('UPDATE_TALK_ITEM', {
             index_name: item.index_name,
@@ -584,7 +584,7 @@ export default {
     delChatItem(item) {
       ServeDeleteTalkList({
         list_id: item.id,
-      }).then(({ code }) => {
+      }).then(({code}) => {
         if (code == 200) {
           this.clearTalk()
           this.$store.commit('REMOVE_TALK_ITEM', item.index_name)
@@ -596,7 +596,7 @@ export default {
     removeFriend(item) {
       ServeDeleteContact({
         friend_id: item.receiver_id,
-      }).then(({ code }) => {
+      }).then(({code}) => {
         if (code == 200) {
           if (this.index_name == item.index_name) {
             this.clearTalk()
@@ -611,7 +611,7 @@ export default {
     removeGroup(item) {
       ServeSecedeGroup({
         group_id: item.receiver_id,
-      }).then(({ code }) => {
+      }).then(({code}) => {
         if (code == 200) {
           if (this.index_name == item.index_name) {
             this.clearTalk()
@@ -640,42 +640,43 @@ export default {
           return val == null || val == '' ? '好友备注不能为空' : true
         },
       })
-        .then(({ value }) => {
-          if (value == item.remark_name) {
-            return false
-          }
-
-          ServeEditContactRemark({
-            friend_id: item.receiver_id,
-            remarks: value,
-          }).then(res => {
-            if (res.code == 200) {
-              this.$store.commit('UPDATE_TALK_ITEM', {
-                index_name: item.index_name,
-                remark_name: value,
-              })
-
-              this.$notify({
-                title: '成功',
-                message: '好友备注修改成功...',
-                type: 'success',
-              })
-            } else {
-              this.$notify({
-                title: '消息',
-                message: '好友备注修改失败，请稍后再试...',
-                type: 'warning',
-              })
+          .then(({value}) => {
+            if (value == item.remark_name) {
+              return false
             }
+
+            ServeEditContactRemark({
+              friend_id: item.receiver_id,
+              remarks: value,
+            }).then(res => {
+              if (res.code == 200) {
+                this.$store.commit('UPDATE_TALK_ITEM', {
+                  index_name: item.index_name,
+                  remark_name: value,
+                })
+
+                this.$notify({
+                  title: '成功',
+                  message: '好友备注修改成功...',
+                  type: 'success',
+                })
+              } else {
+                this.$notify({
+                  title: '消息',
+                  message: '好友备注修改失败，请稍后再试...',
+                  type: 'warning',
+                })
+              }
+            })
           })
-        })
-        .catch(() => {})
+          .catch(() => {
+          })
     },
   },
 }
 </script>
 <style lang="less" scoped>
-/deep/.el-scrollbar__wrap {
+/deep/ .el-scrollbar__wrap {
   overflow-x: hidden;
 }
 
@@ -930,6 +931,7 @@ export default {
           .disturb {
             color: #98999c !important;
             background-color: #ecedf1 !important;
+
             i {
               font-size: 12px;
             }
@@ -983,7 +985,6 @@ export default {
     }
   }
 }
-
 
 
 @media screen and (max-width: 800px) {

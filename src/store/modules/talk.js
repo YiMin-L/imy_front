@@ -23,7 +23,7 @@ const Talk = {
     },
     talkItems: state => {
       return state.items.sort(
-        getMutipSort([getSort((a, b) => a.updated_at > b.updated_at)])
+        getMutipSort([getSort((a, b) => a.update_at > b.update_at)])
       )
     },
     // 消息未读数总计
@@ -78,7 +78,7 @@ const Talk = {
 
         iterator.unread_num++
         iterator.msg_text = resource.msg_text
-        iterator.updated_at = resource.updated_at
+        iterator.update_at = resource.update_at
         break
       }
     },

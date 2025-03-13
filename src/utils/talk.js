@@ -12,7 +12,7 @@ const KEY_INDEX_NAME = 'send_message_index_name'
  */
 export function findTalkIndex(index_name) {
   return store.state.talks.items.findIndex(
-    item => item.index_name == index_name
+    item => item.index_name === index_name
   )
 }
 
@@ -71,7 +71,7 @@ export function toTalk(talk_type, receiver_id) {
     if (code == 200) {
       sessionStorage.setItem(KEY_INDEX_NAME, `${talk_type}_${receiver_id}`)
 
-      if (findTalkIndex(`${talk_type}_${receiver_id}`) == -1) {
+      if (findTalkIndex(`${talk_type}_${receiver_id}`) === -1) {
         store.commit('PUSH_TALK_ITEM', formateTalkItem(data))
       }
 
