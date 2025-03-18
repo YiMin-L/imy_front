@@ -35,7 +35,7 @@ export default {
     // 将时间字符串转换为 Date 对象（处理兼容性）
     parseTime(timeString) {
       // 将 "2023-10-05 14:30:45" 转换为 "2023/10/05 14:30:45"
-      timeString = timeString.replace(/-/g, '/').replace('T',' ');
+      timeString = timeString.replace(/\//g, '-');
 
       return new Date(timeString)
     },

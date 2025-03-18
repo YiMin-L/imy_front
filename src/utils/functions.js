@@ -10,7 +10,7 @@ import config from '@/config/config'
 export function formateTime(datetime) {
   if (datetime == null) return ''
 
-  datetime = datetime.replace(/-/g, '/')
+  datetime = datetime.replace(/\//g, '-')
 
   let time = new Date()
   let outTime = new Date(datetime)
@@ -162,6 +162,9 @@ export function parseTime(time, cFormat) {
   if (arguments.length === 0) {
     return null
   }
+  if (typeof time === 'string') {
+    time=time.replace("T"," ")
+  }
 
   let date
   const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
@@ -176,7 +179,7 @@ export function parseTime(time, cFormat) {
       time = time * 1000
     }
 
-    date = new Date(time.replace(/-/g, '/'))
+    date = new Date(time.replace(/\//g, '-'))
   }
 
   const formatObj = {
@@ -402,7 +405,7 @@ export function beautifyTime(datetime = '') {
     return ''
   }
 
-  datetime = datetime.replace(/-/g, '/')
+  datetime = datetime.replace(/\//g, '-')
 
   let time = new Date()
   let outTime = new Date(datetime)

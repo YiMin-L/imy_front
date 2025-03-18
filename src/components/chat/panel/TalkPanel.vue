@@ -585,12 +585,15 @@ export default {
       if (datetime == undefined) {
         return false
       }
+      if(typeof datetime === "string"){
+        datetime.replace("T"," ")
+      }
 
       if (this.records[index].is_revoke == 1) {
         return false
       }
 
-      datetime = datetime.replace(/-/g, '/')
+      datetime = datetime.replace(/\//g, '-')
       let time = Math.floor(Date.parse(datetime) / 1000)
       let currTime = Math.floor(new Date().getTime() / 1000)
 
@@ -602,7 +605,7 @@ export default {
         return true
       }
 
-      let nextDate = this.records[index + 1].created_at.replace(/-/g, '/')
+      let nextDate = this.records[index + 1].created_at.replace(/\//g, '-')
 
       return !(
         parseTime(new Date(datetime), '{y}-{m}-{d} {h}:{i}') ==
@@ -719,7 +722,7 @@ export default {
 
       if (item.user_id == this.uid) {
         let time =
-          new Date().getTime() - Date.parse(item.created_at.replace(/-/g, '/'))
+          new Date().getTime() - Date.parse(item.created_at.replace(/\//g, '-'))
         if (Math.floor(time / 1000 / 60) < 2) {
           menus.push({
             label: '撤回',
