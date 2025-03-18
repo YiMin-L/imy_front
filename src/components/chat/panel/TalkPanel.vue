@@ -71,6 +71,9 @@
                     :src="item.avatar"
                     @click.native="catFriendDetail(item.user_id)"
                   />
+                  <span class="avatar-name">
+                    {{ item.friend_remarks || item.nickname }}
+                  </span>
                 </aside>
                 <main class="main-column">
                   <div class="talk-title">
@@ -967,6 +970,16 @@ export default {
         }
       }
     }
+    .avatar-name {
+        font-size: 12px;
+        color: #606266;
+        margin-top: 5px;
+        width: 60px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
     .avatar-column {
       width: 40px;
