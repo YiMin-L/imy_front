@@ -420,10 +420,20 @@ export default {
       //   })
       // })
 
+
+      let conversation_id = 0;
+      for (const iterator of this.conversation_items) {
+        if (iterator.index_name === this.index_name) {
+          console.log('conversation_id' + iterator.id)
+          conversation_id = iterator.id
+          break
+        }
+      }
       // 使用WebSocket发送消息
       SocketInstance.emit('send_message_text', {
         receiver_id: parseInt(this.params.receiver_id),
         talk_type: parseInt(this.params.talk_type),
+        conversation_id:conversation_id,
         text: content
       })
       
