@@ -408,15 +408,28 @@ export default {
 
     // 回车键发送消息回调事件
     submitSendMesage(content) {
-      ServeSendTalkText({
+      // ServeSendTalkText({
+      //   receiver_id: parseInt(this.params.receiver_id),
+      //   talk_type: parseInt(this.params.talk_type),
+      //   text: content,
+      // }).then(() => {
+      //   this.$store.commit('UPDATE_TALK_ITEM', {
+      //     index_name: this.index_name,
+      //     draft_text: '',
+      //   })
+      // })
+
+      // 使用WebSocket发送消息
+      SocketInstance.emit('send_message_text', {
         receiver_id: parseInt(this.params.receiver_id),
         talk_type: parseInt(this.params.talk_type),
-        text: content,
-      }).then(() => {
-        this.$store.commit('UPDATE_TALK_ITEM', {
-          index_name: this.index_name,
-          draft_text: '',
-        })
+        text: content
+      })
+      
+      // 清空草稿
+      this.$store.commit('UPDATE_TALK_ITEM', {
+        index_name: this.index_name,
+        draft_text: '',
       })
     },
 
