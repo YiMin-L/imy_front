@@ -368,6 +368,7 @@ export default {
       uid: state => state.user.uid,
       records: state => state.dialogue.records,
       index_name: state => state.dialogue.index_name,
+      conversation_items: state => state.talks.items,
     }),
   },
   watch: {
@@ -464,13 +465,25 @@ export default {
 
     // 加载用户聊天详情信息
     loadChatRecords() {
+
+      let conversation_id = 0;
+      for (const iterator of this.conversation_items) {
+        if (iterator.index_name === this.index_name) {
+          console.log('conversation_id'+iterator.id)
+          conversation_id = iterator.id
+          break
+        }
+      }
+
       const user_id = this.uid
       const data = {
         record_id: this.loadRecord.minRecord,
         receiver_id: this.params.receiver_id,
         talk_type: this.params.talk_type,
         limit: 30,
+        conversation_id:conversation_id
       }
+
 
       this.loadRecord.status = 0
 

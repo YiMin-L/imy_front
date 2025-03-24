@@ -55,8 +55,8 @@ class WsSocket {
 
     this.on('connect', data => {
       console.log('connect', data)
-      this.config.heartbeat.pingInterval = data.ping_interval * 1000
-      this.config.heartbeat.pingTimeout = data.ping_timeout * 1000
+      this.config.heartbeat.pingInterval = data.ping_interval
+      this.config.heartbeat.pingTimeout = data.ping_timeout
       this.heartbeat()
     })
   }
@@ -118,11 +118,11 @@ class WsSocket {
    * @param {Object} evt Websocket 消息
    */
   onParse(evt) {
-    const { event, content } = JSON.parse(evt.data)
+    const { event, data } = JSON.parse(evt.data)
 
     return {
       event: event,
-      data: content,
+      data: data,
       orginData: evt.data,
     }
   }
@@ -207,7 +207,7 @@ class WsSocket {
   }
 
   ping() {
-    this.connect.send('{"event":"heartbeat","content":"ping"}')
+    this.connect.send('{"event":"heartbeat","data":"ping"}')
   }
 
   /**
