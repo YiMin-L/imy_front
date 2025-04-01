@@ -1,0 +1,22 @@
+FROM node:18.14.2-alpine
+
+WORKDIR /app
+
+# 复制 package.json 和 package-lock.json (如果存在)
+COPY package*.json ./
+
+# 安装依赖
+RUN npm config set registry https://registry.npmmirror.com && \
+    npm install
+
+# 复制项目文件
+COPY . .
+
+# 构建应用
+RUN npm run build
+
+# 创建一个卷，用于共享构建结果
+VOLUME /app/dist
+
+# 容器启动后保持运行
+CMD ["tail", "-f", "/dev/null"]

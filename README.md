@@ -64,4 +64,12 @@ server {
 ```
 
 
+# PRD
+
+docker build -t imy-frontend:0401  -f DockerFile .
+
+
+docker run -d --name imy-frontend -p 8088:8088 -e BACKEND_API_URL=http://127.0.0.1:8000/api/ -e BACKEND_WS_URL=ws://127.0.0.1:19000/ws imy-frontend:0401
+
+
 
