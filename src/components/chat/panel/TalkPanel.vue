@@ -53,7 +53,7 @@
                 v-else
                 class="message-box record-box"
                 :class="{
-                  'direction-rt': item.float == 'right',
+                  'direction-rt': item.direction == 'right',
                   'checkbox-border': multiSelect.isOpen === true,
                 }"
               >
@@ -77,7 +77,7 @@
                     <span
                       v-show="
                         params.talk_type == 1 ||
-                          (params.talk_type == 2 && item.float == 'right')
+                          (params.talk_type == 2 && item.direction == 'right')
                       "
                       class="time"
                     >
@@ -88,7 +88,7 @@
 
                   <div class="talk-content">
                     <span
-                      v-show="params.talk_type == 2 && item.float == 'left'"
+                      v-show="params.talk_type == 2 && item.direction == 'left'"
                       class="nickname"
                     >
                       {{ item.friend_remarks || item.nickname }} |
@@ -99,7 +99,7 @@
                     <text-message
                       v-if="item.msg_type == 1"
                       :content="item.content"
-                      :float="item.float"
+                      :float="item.direction"
                       :full-width="false"
                       :arrow="true"
                       @contextmenu.native="onCopy(idx, item, $event)"
@@ -512,9 +512,9 @@ export default {
           }
 
           const records = res.data.rows.map(item => {
-            item.float = 'center'
+            item.direction = 'center'
             if (item.user_id > 0) {
-              item.float = item.user_id == user_id ? 'right' : 'left'
+              item.direction = item.user_id == user_id ? 'right' : 'left'
             }
 
             return item
