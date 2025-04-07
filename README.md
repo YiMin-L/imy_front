@@ -25,6 +25,7 @@ npm install --save-dev cross-env
 # 启动本地开发环境
 npm run serve
 
+export NODE_OPTIONS=--openssl-legacy-provider
 
 ## 生产环境构建项目
 npm run build
@@ -64,15 +65,14 @@ server {
 ```
 
 
+
+
 # PRD
 降级 BuildKit 可以尝试禁用：
 export DOCKER_BUILDKIT=0
 export COMPOSE_DOCKER_CLI_BUILD=0
 
-docker build -t imy-frontend:0405 \
-  --build-arg BACKEND_API_URL=http://127.0.0.1:8080 \
-  --build-arg BACKEND_WS_URL=ws://127.0.0.1:19000/ws \
-  -f Dockerfile .
+docker build -t imy-frontend:0405 --build-arg BACKEND_API_URL=http://127.0.0.1:8080 --build-arg BACKEND_WS_URL=ws://127.0.0.1:19000/ws -f Dockerfile .
 
 docker run -d --name imy-frontend -p 8000:8000 -e BACKEND_API_URL=http://127.0.0.1:8080/api/ -e BACKEND_WS_URL=ws://127.0.0.1:19000/ws imy-frontend:0405
 
