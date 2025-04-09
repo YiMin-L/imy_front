@@ -196,6 +196,8 @@ class Talk extends Base {
     let record = this.resource
 
     record.float = this.getFloatType()
+    record.direction = record.float
+
 
     store.commit('PUSH_DIALOGUE', record)
 

@@ -164,6 +164,15 @@ class WsSocket {
   onError(evt) {
     console.log("连接错误...")
     this.events.onError(evt)
+      // 检查是否是认证错误
+  if (evt && evt.code === 401) {
+    console.log("WebSocket 认证失败，重定向到登录页")
+    import('@/utils/auth').then(auth => {
+      auth.removeAll()
+      window.location.href = '/auth/login'
+    })
+    return
+  }
     this.connect.close()
     this.connect = null
     this.reconnect()
@@ -238,8 +247,8 @@ class WsSocket {
     if (this.connect && this.connect.readyState === 1) {
       this.connect.send(content)
     } else {
-      alert('WebSocket 连接已关闭...')
-      console.error('WebSocket 连接已关闭...', this.connect)
+      alert('WebSocket 连接已关闭...正在尝试重连...')
+      this.reconnect()
     }
   }
 }

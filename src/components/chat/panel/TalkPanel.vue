@@ -65,7 +65,17 @@
                   />
                 </aside>
                 <aside class="avatar-column">
+                  <div 
+                    class="avatar-container" 
+                    v-if="!item.avatar" 
+                    @click="catFriendDetail(item.user_id)"
+                  >
+                    <span class="avatar-text">
+                      {{ (item.friend_remarks ? item.friend_remarks : item.nickname).substr(0, 1) }}
+                    </span>
+                  </div>
                   <el-avatar
+                    v-else
                     class="pointer"
                     :size="30"
                     :src="item.avatar"
@@ -1094,5 +1104,27 @@ export default {
 
 .lum-scrollbar::-webkit-scrollbar {
   background-color: #ffffff;
+}
+
+.avatar-container {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #508afe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.avatar-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  user-select: none;
 }
 </style>

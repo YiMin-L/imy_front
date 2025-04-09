@@ -77,7 +77,7 @@
                       class="selectd-item no-select"
                     >
                       <el-avatar :size="25" :src="item.avatar">
-                        <img src="~@/assets/image/default-avatar.jpg" />
+                        {{ item.nickname.substr(0, 1) }}
                       </el-avatar>
                       <p>{{ item.nickname }}</p>
                       <div
